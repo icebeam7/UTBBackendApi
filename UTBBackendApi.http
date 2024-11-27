@@ -1,0 +1,6 @@
+@UTBBackendApi_HostAddress = http://localhost:5281
+
+GET {{UTBBackendApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
