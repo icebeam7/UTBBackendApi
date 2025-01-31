@@ -13,5 +13,20 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- powershell: |
+      Write-Host "My first secret variable is $env:FOO_ONE"
+      $env:FOO_ONE -eq "foo"
+  env:
+    FOO_ONE: $(SecretOne)
+- bash: |
+    echo "My second secret variable: $FOO_TWO"
+    if [ "$FOO_TWO" = "bar" ]; then
+        echo "Strings are equal."
+    else
+        echo "Strings are not equal."
+    fi
+  env:
+    FOO_TWO: $(SecretTwo) 
+
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
